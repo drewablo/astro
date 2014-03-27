@@ -2,25 +2,33 @@
 
 from time import sleep
 from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
+import datetime
 
 # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
 # pass '0' for early 256 MB Model B boards or '1' for all later versions
-lcd = Adafruit_CharLCDPlate()
 
-# Clear display and show greeting, pause 1 sec
+lcd = Adafruit_CharLCDPlate()
+int timeLap
+
+LRtext = [StartTimeLapse,StopTimeLapse,Interval,]
+
+# Clear display and show greeting, pause 4 sec
+
 lcd.clear()
 lcd.RED
 lcd.backlight(c)
-
 lcd.message("BCE Core\nInitiated")
 sleep(4)
 
+lcd.blink
+
 # Poll buttons, display message & set backlight accordingly
-btn = ((lcd.LEFT  , 'Red Red Wine'              ),
-       (lcd.UP    , 'Sita sings\nthe blues'     , lcd.BLUE),
-       (lcd.DOWN  , 'I see fields\nof green'    , lcd.GREEN),
-       (lcd.RIGHT , 'Purple mountain\nmajesties', lcd.VIOLET),
+btn = ((lcd.LEFT  , tk , tk),
+       (lcd.UP  , timeLap +=1  , ),
+       (lcd.DOWN  , timeLapse -=1 , lcd.GREEN),
+       (lcd.RIGHT , '', lcd.VIOLET),
        (lcd.SELECT, ''                          , lcd.ON))
+       
 prev = -1
 while True:
     for b in btn:
@@ -31,3 +39,5 @@ while True:
                 lcd.backlight(b[2])
                 prev = b
             break
+
+os.system("sudo gphoto2 --capture-image-and-download --interval 'TK'")
