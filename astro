@@ -2,13 +2,16 @@
 
 from time import sleep
 from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
-import datetime
+from datetime import datetime
+from time import strftime
 
 # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
 # pass '0' for early 256 MB Model B boards or '1' for all later versions
 
 lcd = Adafruit_CharLCDPlate()
 int timeLap
+
+date = strftime("%Y%m%d")
 
 LRtext = [StartTimeLapse,StopTimeLapse,Interval,]
 
@@ -19,6 +22,9 @@ lcd.RED
 lcd.backlight(c)
 lcd.message("BCE Core\nInitiated")
 sleep(4)
+
+os.system("sudo mkdir" date)
+os.system("cd " date)
 
 lcd.blink
 
@@ -40,4 +46,4 @@ while True:
                 prev = b
             break
 
-os.system("sudo gphoto2 --capture-image-and-download --interval 'TK'")
+os.system("sudo gphoto2 --capture-image-and-download --interval" timeLap)
