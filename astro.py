@@ -41,7 +41,7 @@ while 1:
         if (mag[0] >= 0 and mag[0] < 50) or pressure <= 10 or xRayNom.findall(xray_field):
                 lcd.backlight(lcd.GREEN)
                 lcd.message(mag_disp + '\n' + pressure_disp)
-				print 'NOMINAL CONDITIONS Magnetic Field:',mag[0],'nT Speed:',speed[0],'km/s Pressure: ',pressure[0],'nPa ',xray_field[0]
+		print 'NOMINAL CONDITIONS Magnetic Field:',mag[0],'nT Speed:',speed[0],'km/s Pressure: ',pressure[0],'nPa ',xray_field[0]
                 time.sleep(7.5)
                 lcd.clear()
                 os.system('clear')
